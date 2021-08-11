@@ -21,8 +21,14 @@ steps:
       AWS_SECRET_ACCESS_KEY:
         from_secret: storaj_secret_key
     commands:
+      - rustup component add clippy
       - cargo clippy
   - name: cargo_test
     image: hsmtkk/rust-sccache:1.54.1
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: storaj_access_key
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: storaj_secret_key
     commands:
       - cargo test
