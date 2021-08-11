@@ -41,6 +41,7 @@ steps:
       AWS_SECRET_ACCESS_KEY:
         from_secret: storaj_secret_key
     commands:
+      - env
       - cargo build
   - name: cargo_build_release
     image: hsmtkk/rust-sccache:1.54.1
