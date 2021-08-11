@@ -40,9 +40,11 @@ steps:
         from_secret: storaj_access_key
       AWS_SECRET_ACCESS_KEY:
         from_secret: storaj_secret_key
+      SCCACHE_LOG: debug
+      SCCACHE_ERROR_LOG: /tmp/sccache.log
     commands:
-      - env
       - cargo build
+      - cat /tmp/sccache.log
   - name: cargo_build_release
     image: hsmtkk/rust-sccache:1.54.1
     environment:
