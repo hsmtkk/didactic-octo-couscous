@@ -3,6 +3,15 @@ kind: pipeline
 type: docker
 name: default
 
+environment:
+  SCCACHE_ENDPOINT: gateway.ap1.storjshare.io:443
+  SCCACHE_S3_USE_SSL: "true"
+  SCCACHE_BUCKET: sccache
+  AWS_ACCESS_KEY_ID:
+    from_secret: storaj_access_key
+  AWS_SECRET_ACCESS_KEY:
+    from_secret: storaj_secret_key
+
 steps:
   - name: yml_lint
     image: sdesbure/yamllint:latest
