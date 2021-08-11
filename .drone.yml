@@ -7,6 +7,7 @@ environment:
   SCCACHE_ENDPOINT: "gateway.ap1.storjshare.io:443"
   SCCACHE_S3_USE_SSL: "true"
   SCCACHE_BUCKET: sccache
+  RUSTC_WRAPPER: /usr/local/cargo/bin/sccache
 
 steps:
   - name: yml_lint
@@ -32,3 +33,21 @@ steps:
         from_secret: storaj_secret_key
     commands:
       - cargo test
+  - name: cargo_build
+    image: hsmtkk/rust-sccache:1.54.1
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: storaj_access_key
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: storaj_secret_key
+    commands:
+      - cargo build
+  - name: cargo_build_release
+    image: hsmtkk/rust-sccache:1.54.1
+    environment:
+      AWS_ACCESS_KEY_ID:
+        from_secret: storaj_access_key
+      AWS_SECRET_ACCESS_KEY:
+        from_secret: storaj_secret_key
+    commands:
+      - cargo build --release
