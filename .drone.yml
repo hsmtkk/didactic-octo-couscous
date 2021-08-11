@@ -4,6 +4,8 @@ type: docker
 name: default
 
 environment:
+  SCCACHE_ENDPOINT: "gateway.ap1.storjshare.io:443"
+  SCCACHE_S3_USE_SSL: "true"
   SCCACHE_BUCKET: sccache
 
 steps:
