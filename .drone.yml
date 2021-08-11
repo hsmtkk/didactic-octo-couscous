@@ -3,6 +3,9 @@ kind: pipeline
 type: docker
 name: default
 
+environment:
+  SCCACHE_BUCKET: sccache
+
 steps:
   - name: yml_lint
     image: sdesbure/yamllint:latest
