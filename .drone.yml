@@ -1,0 +1,10 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: yml_lint
+    image: sdesbure/yamllint:latest
+    commands:
+      - yamllint .drone.yml
